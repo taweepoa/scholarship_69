@@ -1,0 +1,203 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">แดชบอร์ดผู้ดูแลระบบ</h2>
+</div>
+
+<!-- ✅ ส่วนเมนูแบบแนวนอน (Top Navigation) -->
+<div class="card shadow-sm mb-4">
+    <div class="card-body p-2">
+        <!-- ใช้ nav-pills เพื่อความสวยงาม และ nav-fill เพื่อให้เต็มความกว้าง -->
+        <nav class="nav nav-pills nav-fill flex-column flex-md-row gap-2" id="admin-menu">
+            <a class="nav-link active" href="#" onclick="switchAdminTab('applicants', this)">
+                <i class="bi bi-people-fill me-2"></i>ผู้สมัคร
+            </a>
+            <a class="nav-link" href="#" onclick="switchAdminTab('score-process', this)">
+                <i class="bi bi-cpu-fill me-2"></i>ประมวลผล
+            </a>
+            <a class="nav-link" href="#" onclick="switchAdminTab('individual-scores', this)">
+                <i class="bi bi-person-lines-fill me-2"></i>รายบุคคล
+            </a>
+            <a class="nav-link" href="#" onclick="switchAdminTab('overview-scores', this)">
+                <i class="bi bi-bar-chart-fill me-2"></i>ภาพรวม
+            </a>
+            <a class="nav-link" href="#" onclick="switchAdminTab('school-analysis', this)">
+                <i class="bi bi-building-fill me-2"></i>โรงเรียน
+            </a>
+            <a class="nav-link" href="#" onclick="switchAdminTab('settings', this)">
+                <i class="bi bi-gear-fill me-2"></i>ตั้งค่า
+            </a>
+        </nav>
+    </div>
+</div>
+
+<!-- ✅ ส่วนแสดงเนื้อหา (เต็มความกว้าง Col-12) -->
+<div class="row">
+    <div class="col-12">
+        
+        <!-- 1. หน้าจัดการผู้สมัคร -->
+        <div id="tab-applicants" class="admin-tab-content">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white"><h5>ตรวจสอบรายชื่อ</h5></div>
+                <div class="card-body">
+                     <div class="table-responsive">
+                        <table id="admin-table" class="table table-bordered table-hover w-100">
+                             <!-- DataTables จะเติมข้อมูลที่นี่ -->
+                        </table>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. หน้าประมวลผลคะแนน -->
+        <div id="tab-score-process" class="admin-tab-content d-none">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white"><h5>จัดการคะแนนสอบ</h5></div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">1. ดาวน์โหลดแบบฟอร์ม</label>
+                            <button class="btn btn-outline-primary w-100" onclick="downloadScoreTemplate()">
+                                <i class="bi bi-file-earmark-spreadsheet me-2"></i>ดาวน์โหลด Excel Template
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">2. อัปโหลดคะแนน</label>
+                            <input type="file" id="scoreFileUpload" class="form-control" accept=".xlsx, .csv">
+                            <button class="btn btn-success w-100 mt-2" onclick="uploadScoreFile()">
+                                <i class="bi bi-upload me-2"></i>นำเข้าคะแนน
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row g-3">
+                         <div class="col-md-6">
+                            <label class="form-label">3. ประมวลผลรายคน</label>
+                            <button class="btn btn-warning w-100" onclick="runIndividualProcess()">
+                                <i class="bi bi-person-check me-2"></i>คำนวณเกียรติบัตร & คะแนนรวม
+                            </button>
+                             <small class="text-muted">คำนวณคะแนนรวม และระดับเกียรติบัตร</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">4. ประมวลผลภาพรวม</label>
+                            <button class="btn btn-danger w-100" onclick="runOverviewProcess()">
+                                <i class="bi bi-graph-up-arrow me-2"></i>จัดลำดับ & สถิติ
+                            </button>
+                            <small class="text-muted">จัดลำดับที่, ทุนช้างเผือก, Percentile, และสร้างกราฟ</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. คะแนนรายบุคคล -->
+        <div id="tab-individual-scores" class="admin-tab-content d-none">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">คะแนนรายบุคคล</h5>
+                    <select id="indv-score-filter" class="form-select form-select-sm w-auto">
+                        <!-- Options filled by JS -->
+                    </select>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="indv-score-table" class="table table-sm table-striped w-100">
+                            <thead>
+                                <tr>
+                                    <th>ลำดับ</th>
+                                    <th>ช้างเผือก</th>
+                                    <th>ชื่อ-สกุล</th>
+                                    <th>เกียรติบัตร</th>
+                                    <th>คะแนนรวม</th>
+                                    <th>จัดการ</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. คะแนนภาพรวม -->
+        <div id="tab-overview-scores" class="admin-tab-content d-none">
+             <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <ul class="nav nav-tabs card-header-tabs" id="overviewTabs">
+                        <!-- Tabs for M1 / M4 will be injected here -->
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="overviewTabContent">
+                        <!-- Content filled by JS -->
+                        <div class="text-center py-5 text-muted">กรุณาเลือกประเภททุนเพื่อดูข้อมูล</div>
+                    </div>
+                </div>
+             </div>
+        </div>
+
+        <!-- 5. วิเคราะห์โรงเรียน -->
+        <div id="tab-school-analysis" class="admin-tab-content d-none">
+             <div class="row g-4">
+                 <div class="col-12">
+                     <div class="card shadow-sm">
+                        <div class="card-header bg-white"><h5>10 อันดับโรงเรียนที่มีคะแนนเฉลี่ยสูงสุด</h5></div>
+                        <div class="card-body">
+                            <div style="height: 400px; position: relative;">
+                                <canvas id="schoolTop10Chart"></canvas>
+                            </div>
+                        </div>
+                     </div>
+                 </div>
+                 <div class="col-12">
+                     <div class="card shadow-sm">
+                        <div class="card-header bg-warning text-dark"><h5>โรงเรียนที่เป็นเลิศด้านวิชาการ (ได้รับเหรียญทอง)</h5></div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="school-excellence-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 10%;">ลำดับ</th>
+                                            <th>โรงเรียน</th>
+                                            <th class="text-center" style="width: 15%;">ผู้เข้าสอบ (คน)</th> <th class="text-center" style="width: 20%;">จำนวนเหรียญทอง</th>
+                                            <th class="text-center" style="width: 20%;">คะแนนเฉลี่ยรวม</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Filled by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+        
+         <!-- 6. ตั้งค่าระบบ -->
+        <div id="tab-settings" class="admin-tab-content d-none">
+             <div class="card shadow-sm mb-4">
+              <div class="card-header bg-secondary text-white">
+                <h5><i class="bi bi-gear-fill me-2"></i>ตั้งค่าระบบ</h5>
+              </div>
+              <div class="card-body">
+                <form id="settingsForm">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="admin_start_date" class="form-label fw-bold">วันเปิดรับสมัคร</label>
+                      <input type="datetime-local" class="form-control" id="admin_start_date">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="admin_deadline" class="form-label fw-bold">วันปิดรับสมัคร</label>
+                      <input type="datetime-local" class="form-control" id="admin_deadline">
+                    </div>
+                    <div class="col-12 text-end">
+                      <button type="button" class="btn btn-primary" id="saveSettingsBtn">
+                        <i class="bi bi-save me-2"></i>บันทึกการตั้งค่า
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+
+    </div>
+</div>
