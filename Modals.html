@@ -1,0 +1,249 @@
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel"><i class="bi bi-pencil-square me-2"></i>แบบฟอร์มสมัครสอบทุนช้างเผือก</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="registerForm" novalidate>
+          
+          <div class="form-step active" id="step1">
+            <h6 class="text-primary fw-bold border-bottom pb-2 mb-3">1. ข้อมูลการสมัครและข้อมูลเข้าระบบ</h6>
+            <div class="row g-3">
+              <div class="col-md-12">
+                <label for="ScholarshipType" class="form-label">ประเภททุน</label>
+                <select class="form-select" id="ScholarshipType" name="ScholarshipType" required></select>
+              </div>
+              <div class="col-md-6">
+                <label for="CitizenID" class="form-label">เลขประจำตัวประชาชน</label>
+                <input type="text" class="form-control" id="CitizenID" name="CitizenID" pattern="\d{13}" maxlength="13" required>
+                <div class="form-text text-danger">
+                  โปรดตรวจสอบให้ถูกต้อง
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="Password" class="form-label">ตั้งรหัสผ่าน</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="Password" name="Password" minlength="6" required>
+                  <button class="btn btn-outline-secondary toggle-password-btn" type="button">
+                      <i class="bi bi-eye-slash"></i>
+                  </button>
+                </div>
+                <div class="form-text text-danger">
+                  อย่างน้อย 6 ตัวอักษร ที่จำได้ง่ายสำหรับใช้เข้าสู่ระบบ
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-step" id="step2">
+            <h6 class="text-primary fw-bold border-bottom pb-2 mb-3">2. ข้อมูลนักเรียน</h6>
+            <div class="row g-3">
+               <div class="col-md-3">
+                  <label for="StudentPrefix" class="form-label">คำนำหน้าชื่อ</label>
+                  <select class="form-select" id="StudentPrefix" name="StudentPrefix" required></select>
+              </div>
+              <div class="col-md-5">
+                <label for="StudentFirstName" class="form-label">ชื่อ</label>
+                <input type="text" class="form-control" id="StudentFirstName" name="StudentFirstName" required>
+              </div>
+              <div class="col-md-4">
+                <label for="StudentLastName" class="form-label">นามสกุล</label>
+                <input type="text" class="form-control" id="StudentLastName" name="StudentLastName" required>
+              </div>
+              <div class="col-md-6">
+                  <label for="StudentGrade" class="form-label">ระดับชั้น</label>
+                  <select class="form-select" id="StudentGrade" name="StudentGrade" required></select>
+              </div>
+               <div class="col-md-6">
+                <label for="School" class="form-label">โรงเรียน</label>
+                <input type="text" class="form-control" id="School" name="School" required>
+              </div>
+              <div class="col-md-6">
+                <label for="StudentPhone" class="form-label">เบอร์โทรนักเรียน</label>
+                <input type="tel" class="form-control" id="StudentPhone" name="StudentPhone" pattern="\d{10}" maxlength="10" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-step" id="step3">
+             <h6 class="text-primary fw-bold border-bottom pb-2 mb-3">3. ข้อมูลครูที่ปรึกษา</h6>
+             <div class="row g-3">
+              <div class="col-md-3">
+                  <label for="AdvisorPrefix" class="form-label">คำนำหน้าชื่อ</label>
+                  <select class="form-select" id="AdvisorPrefix" name="AdvisorPrefix" required></select>
+              </div>
+              <div class="col-md-5">
+                <label for="AdvisorFirstName" class="form-label">ชื่อครูที่ปรึกษา</label>
+                <input type="text" class="form-control" id="AdvisorFirstName" name="AdvisorFirstName" required>
+              </div>
+              <div class="col-md-4">
+                <label for="AdvisorLastName" class="form-label">นามสกุลครูที่ปรึกษา</label>
+                <input type="text" class="form-control" id="AdvisorLastName" name="AdvisorLastName" required>
+              </div>
+              <div class="col-md-6">
+                <label for="AdvisorPhone" class="form-label">เบอร์โทรครูที่ปรึกษา</label>
+                <input type="tel" class="form-control" id="AdvisorPhone" name="AdvisorPhone" pattern="\d{10}" maxlength="10" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-step" id="step4">
+            <h6 class="text-primary fw-bold border-bottom pb-2 mb-3">4. ข้อมูลการชำระเงิน</h6>
+            <div class="alert alert-info">
+                <p class="fw-bold mb-1">โอนเงินค่าธรรมเนียมการสมัครสอบ 100 บาท</p>
+                <p class="mb-0">ธนาคาร: <strong>กรุงไทย</strong></p>
+                <p class="mb-0">ชื่อบัญชี: <strong>ฝ่ายวิชาการโรงเรียนส่วนบุญโญปถัมภ์ ลำพูน</strong></p>
+                <p class="mb-0">เลขบัญชี: <strong>511-3-02570-4</strong></p>
+            </div>
+            <div class="mb-3">
+                <label for="slipUpload" class="form-label">อัพโหลดไฟล์สลิป (บังคับ)</label>
+                <div id="drop-zone" class="drop-zone">
+                    <i class="bi bi-cloud-arrow-up-fill fs-2 text-muted"></i>
+                    <p class="drop-zone-text">ลากไฟล์มาวางที่นี่ หรือ คลิกเพื่อเลือกไฟล์</p>
+                </div>
+                <input type="file" id="slipUpload" multiple accept="image/*,.pdf" class="d-none">
+                 <div id="preview-container"></div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)" style="display: none;">ย้อนกลับ</button>
+        <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">ถัดไป</button>
+        <button type="submit" class="btn btn-success" id="submitBtn" form="registerForm" style="display: none;">
+          ยืนยันการสมัคร <i class="bi bi-check-circle-fill ms-1"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="applicantLoginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-key-fill me-2"></i>เข้าสู่ระบบผู้สมัคร</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="applicantLoginForm">
+          <div class="mb-3">
+            <label class="form-label">เลขประจำตัวประชาชน</label>
+            <input type="text" class="form-control" id="loginCitizenId" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">รหัสผ่าน</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="loginPassword" required>
+              <button class="btn btn-outline-secondary toggle-password-btn" type="button">
+                  <i class="bi bi-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">เข้าสู่ระบบ</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="adminLoginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-person-gear me-2"></i>สำหรับเจ้าหน้าที่</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="adminLoginForm">
+          <div class="mb-3">
+            <label class="form-label">ชื่อผู้ใช้</label>
+            <input type="text" class="form-control" id="adminUsername" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">รหัสผ่าน</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="adminPassword" required>
+              <button class="btn btn-outline-secondary toggle-password-btn" type="button">
+                  <i class="bi bi-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">เข้าสู่ระบบ</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="applicantInfoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ข้อมูลการสมัคร</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="applicant-info-content">
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="examInfoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">เลขที่นั่งสอบ/ห้องสอบ/ตารางสอบ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="exam-info-content">
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="scoreInfoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ผลคะแนนสอบ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="score-info-content">
+                 </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="certificateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">เกียรติบัตร</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center" id="certificate-content">
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="slipViewerModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ไฟล์สลิปโอนเงิน</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="slip-viewer-body">
+        </div>
+    </div>
+  </div>
+</div>
